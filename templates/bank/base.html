@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <title>{% block title %}Bank Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bank/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>BankApp</h2>
+        <a href="{% url 'bank:customer_list' %}">👤 Customers</a>
+        <a href="#">💳 Accounts</a>
+        <a href="#">💰 Transactions</a>
+    </div>
+
+    <div class="main">
+        <div class="navbar">
+            <h1>{% block header %}Dashboard{% endblock %}</h1>
+            <div class="user-info">
+                {% if request.user.is_authenticated %}
+                    Logged in as: {{ request.user.username }}
+                {% else %}
+                    Guest
+                {% endif %}
+            </div>
+        </div>
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

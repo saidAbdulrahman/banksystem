@@ -1,0 +1,15 @@
+{% extends "bank/base.html" %}
+{% block title %}Customer Detail{% endblock %}
+{% block header %}Customer Details{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>{{ customer.first_name }} {{ customer.last_name }}</h2>
+    <p><strong>Email:</strong> {{ customer.email }}</p>
+    <p><strong>Phone:</strong> {{ customer.phone }}</p>
+    <p><strong>ID Number:</strong> {{ customer.national_id_number }}</p>
+    <p><strong>Branch:</strong> {{ customer.branch }}</p>
+    <p><strong>Created At:</strong> {{ customer.created_at }}</p>
+</div>
+<a href="{% url 'bank:customer_list' %}">← Back to Customers</a>
+{% endblock %}

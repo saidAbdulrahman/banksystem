@@ -1,0 +1,24 @@
+{% extends "bank/base.html" %}
+{% block title %}Customers{% endblock %}
+{% block header %}Customer List{% endblock %}
+
+{% block content %}
+<div class="card">
+    <form method="get">
+        <input type="text" name="q" placeholder="Search by name, phone, or ID" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+{% for c in customers %}
+<div class="card">
+    <h2>{{ c.first_name }} {{ c.last_name }}</h2>
+    <p>📧 {{ c.email }}</p>
+    <p>📞 {{ c.phone }}</p>
+    <p>🆔 {{ c.national_id_number }}</p>
+    <a href="{% url 'bank:customer_detail' c.id %}">View Details →</a>
+</div>
+{% empty %}
+<p>No customers found.</p>
+{% endfor %}
+{% endblock %}
